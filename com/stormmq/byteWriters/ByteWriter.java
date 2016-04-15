@@ -38,7 +38,7 @@ public interface ByteWriter<X extends Exception> extends AutoCloseable
 
 	default void writeUtf8EncodedString(@NotNull @NonNls final String value) throws InvalidUtf16StringException, X
 	{
-		((Utf8ByteUser<X>) this::writeByte).encodeUtf8Bytes(value);
+		((Utf8ByteUser<X>) (byteIndex, sequenceLength, value1) -> writeByte(value1)).encodeUtf8Bytes(value);
 	}
 
 	default void writeUtf8EncodedStringWithCertainty(@NotNull @NonNls final String value) throws X
